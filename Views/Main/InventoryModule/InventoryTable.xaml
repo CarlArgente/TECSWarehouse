@@ -1,0 +1,124 @@
+﻿<UserControl x:Class="WarehouseManagement.Views.Main.InventoryModule.InventoryTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WarehouseManagement.Views.Main.InventoryModule"
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <Grid>
+        <DataGrid
+            ScrollViewer.VerticalScrollBarVisibility="Visible"
+            HorizontalScrollBarVisibility="Auto"
+            MaxHeight="590"
+            DockPanel.Dock="Top"
+            CanUserAddRows="False"
+            AutoGenerateColumns="False"
+            HeadersVisibility="Column"
+            GridLinesVisibility="All"
+            BorderBrush="#949494"
+            VerticalScrollBarVisibility="Auto"
+            Background="White"
+            Grid.Row="0"
+            RowHeight="40"
+            IsReadOnly="True"
+            CanUserDeleteRows="False"
+            CanUserSortColumns="True"
+            CanUserReorderColumns="False"
+            CanUserResizeColumns="False"
+            TextBlock.TextAlignment="Left"
+            AlternatingRowBackground="#FFF3F3"
+            SelectionMode="Single"
+            x:Name="tblProducts"
+            ItemsSource="{Binding Items}"
+            ColumnHeaderStyle="{StaticResource HeaderStyle}"
+            Margin="0,0,0,0">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="productID" Header="PRODUCT ID"
+                                    Binding="{Binding product_id}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                    Width="200"/>
+
+                <DataGridTextColumn x:Name="productName" Header="PRODUCT NAME"
+                                    Binding="{Binding item_name}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                    Width="250"/>
+
+                <DataGridTextColumn x:Name="productPrice" Header="PRICE"
+                                    Binding="{Binding nominated_price, StringFormat='{}₱{0:#,0.00}'}"
+                                    ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                    EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                    Width="150"/>
+
+                <DataGridTemplateColumn x:Name="productStatus" Header="STATUS" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="5" VerticalAlignment="Center" Height="25">
+                                <TextBlock Text="{Binding status}" Foreground="White" VerticalAlignment="Center" TextAlignment="Center" />
+                                <Border.Style>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding status}" Value="IN-STOCK">
+                                                <Setter Property="Background" Value="#1F5FA8"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding status}" Value="LOW-STOCK">
+                                                <Setter Property="Background" Value="#D4A200"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding status}" Value="OUT OF STOCK">
+                                                <Setter Property="Background" Value="#FF5733"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding status}" Value="DISCONTINUED">
+                                                <Setter Property="Background" Value="#6C757D"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn x:Name="productStock" Header="STOCK"
+                                            Binding="{Binding unit_quantity}"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            Width="100"/>
+
+                <DataGridTextColumn x:Name="productReorderUnit" Header="REORDER UNIT"
+                                            Binding="{Binding reorder_point}"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            Width="150"/>
+
+                <DataGridTextColumn x:Name="productLastRestock" Header="LAST RE-STOCK DATE"
+                                            Binding="{Binding timestamp, StringFormat='MMMM dd, yyyy hh:mm:ss'}"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}"
+                                            Width="180">
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn x:Name="productAction" Header="ACTION" Width="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="btnAction" 
+                                            Click="btnAction_Click"
+                                            DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},Path=DataContext}"
+                                            BorderThickness="0"
+                                            Background="Transparent">
+                                <Canvas Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Path Fill="#000000" Data="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z" />
+                                </Canvas>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</UserControl>

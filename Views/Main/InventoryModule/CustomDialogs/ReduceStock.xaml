@@ -1,0 +1,85 @@
+﻿<Window x:Class="WarehouseManagement.Views.Main.InventoryModule.CustomDialogs.ReduceStock"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WarehouseManagement.Views.Main.InventoryModule.CustomDialogs"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Height="290" Width="400"
+        WindowStyle="None"
+        Title="ReduceStock">
+    
+    <Border CornerRadius="10" Background="White"
+            BorderBrush="Black"
+            BorderThickness="1">
+        
+        <Grid Margin="20">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,0,30" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <TextBlock Text="Reduce Stock" Margin="0,0,0,20" FontSize="20" FontWeight="Regular" x:Name="lbProduct"/>
+                    <TextBlock Text="Item: Name" Margin="0,0,0,0" FontSize="17" FontWeight="Light" x:Name="lblItemName"/>
+                    <TextBlock Text="Current Stock: 20" Margin="0,0,0,0" FontSize="17" FontWeight="Light" x:Name="lblStock"/>
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" Margin="0,0,0,0" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button x:Name="btnClose"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                            Click="btnClose_Click"
+                        Grid.Row="0"
+                        Style="{StaticResource SmallCloseButtonStyle}"
+                        Background="{StaticResource textboxProfitAnalysisColor1}"
+                        BorderBrush="Transparent"
+                        IsCancel="True">
+                    </Button>
+                </StackPanel>
+                
+            </Grid>
+            
+            <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Bottom">
+
+                <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Width="Auto"
+                         materialDesign:HintAssist.Hint="Amount to deduct" FontSize="15"
+                         Background="{StaticResource textboxProfitAnalysisColor1}"
+                         materialDesign:HintAssist.Foreground="Black"
+                         BorderBrush="Black"
+                         x:Name="tbAmount"/>
+
+            </StackPanel>
+
+            <Button Grid.Row="2"
+                    Click="btnConfirm_Click" 
+                    x:Name="btnConfirm" 
+                    Content="Confirm" 
+                    Margin="0,20,0,0"
+                    IsDefault="True" 
+                    Background="{StaticResource secondaryColor}" 
+                    FontSize="20" 
+                    Height="50"
+                    BorderBrush="Transparent"/>
+        </Grid>
+    </Border>
+</Window>

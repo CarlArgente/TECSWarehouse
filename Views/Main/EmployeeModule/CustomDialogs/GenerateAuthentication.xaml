@@ -1,0 +1,139 @@
+﻿<Window x:Class="WarehouseManagement.Views.Main.EmployeeModule.CustomDialogs.GenerateAuthentication"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:WarehouseManagement.Views.Main.EmployeeModule.CustomDialogs"
+        WindowStyle="None"
+        Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="GenerateAuthentication" Height="350" Width="400">
+    
+    <Border CornerRadius="10" Background="White"
+            BorderBrush="Black"
+            BorderThickness="1">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" Margin="0,20,20,10">
+
+                <Button x:Name="btnClose"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Grid.Row="0"
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource SmallCloseButtonStyle}"
+                            Background="{StaticResource textboxProfitAnalysisColor1}"
+                            BorderBrush="Transparent"
+                            IsCancel="True">
+                </Button>
+
+                <Button x:Name="btnViewKeys"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Grid.Row="0"
+                            Margin="0,0,5,0"
+                            Click="btnViewKeys_Click"
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource Show}"
+                            Background="{StaticResource textboxProfitAnalysisColor1}"
+                            BorderBrush="Transparent">
+
+                </Button>
+
+
+            </DockPanel>
+
+            <TextBlock 
+                Grid.Row="0" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="2" 
+                Text="Generate Authentication" 
+                Margin="20,20,0,10" 
+                Foreground="#3C3C3C" 
+                FontSize="20" 
+                FontWeight="Medium" 
+                x:Name="lblTitle"/>
+
+            <ComboBox 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="3" 
+                Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                materialDesign:HintAssist.Hint="User Level" 
+                FontSize="15"      
+                materialDesign:HintAssist.Foreground="Black"             
+                BorderBrush="Black"          
+                Background="{StaticResource textboxProfitAnalysisColor1}"                 
+                x:Name="cbUserLevel"  
+                SelectionChanged="cbUserLevel_SelectionChanged"
+                Margin="20,0,20,0">
+
+            </ComboBox>
+
+            <TextBox 
+                Grid.Row="3" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="3" 
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"        
+                materialDesign:HintAssist.Hint="Authentication Key" 
+                FontSize="15"       
+                Margin="20,0,20,0"
+                Background="{StaticResource textboxProfitAnalysisColor1}"         
+                materialDesign:HintAssist.Foreground="Black"           
+                BorderBrush="Black"  
+                IsReadOnly="True"
+                VerticalAlignment="Center"
+                x:Name="tbAuthen"/>
+
+            <TextBox 
+                Grid.Row="2" 
+                Grid.Column="0" 
+                Grid.ColumnSpan="3" 
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"        
+                materialDesign:HintAssist.Hint="Hourly Rate" 
+                FontSize="15"      
+                PreviewTextInput="DecimalValidationTextBox"
+                Margin="20,0,20,0"
+                Background="{StaticResource textboxProfitAnalysisColor1}"         
+                materialDesign:HintAssist.Foreground="Black"           
+                BorderBrush="Black"  
+                VerticalAlignment="Center"
+                x:Name="tbRate"/>
+
+            <Button 
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Grid.Row="4"
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Center" 
+                x:Name="btnGenerate" 
+                Content="Generate" 
+                IsDefault="True"
+                Click="btnGenerate_Click"
+                FontSize="15"
+                Margin="20,10,20,20"
+                Background="{StaticResource secondaryColor}" 
+                BorderBrush="Transparent" 
+                Height="50"/>
+        </Grid>
+
+    </Border>
+</Window>
